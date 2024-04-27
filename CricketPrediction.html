@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cricket Prediction</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Tilt+Neon&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap')
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            padding-top: 10px;
+            overflow:auto;
+        }
+        body::webkit-scrollbar {
+            flex:none;
+        }
+        header {
+            position: fixed;
+            top:0;
+            left:0;
+            right:0;
+            width:100%;
+            z-index: 1000;
+            background-color: white;
+            color: black;
+            padding: 20px 30px;
+            
+            text-align: center;
+            font-family: "Ubuntu", sans-serif;
+            font-weight: 700;
+            font-style: normal;
+        }
+        .logo {
+            width: 100px; /* Adjust size as needed */
+        }
+        .navbar {
+            padding: 30px;
+        }
+        .navbar a {
+            color: black;
+            text-decoration: none; 
+            margin-right:30px;
+            text-decoration: none;
+            position:relative;
+            font-size: 20px;
+           
+        }
+        .navbar a::after {
+            content:"";
+            position:absolute;
+            left: 0;
+            bottom: -3px;
+            width: 0;
+            height: 2px;
+            background-color: transparent;
+            transition: width 0.5s, background-color 0.5s;
+        }
+        .navbar a:hover::after {
+            width: 100%;
+            background-color: red;
+        }
+        .h1-image {
+            background-image: url(https://res.cloudinary.com/dqpfygr5y/image/upload/v1712830536/R.057b31be70cc73b9d0c829205f90e02f_luheuh.jpg);
+            height: 100vh;     }
+        .heading {
+            padding-top: 150px;
+            margin-left:30px;
+            font-family: "Roboto", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+        }
+        .p1 {
+            padding: 20px;
+            font-family: "Tilt Neon", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  font-variation-settings:
+    "XROT" 0,
+    "YROT" 0;
+    
+        }
+        .images-container {
+            overflow-x: auto;
+            white-space: nowrap;
+            display: flex;
+            padding-top: 50px;
+        }
+        .image {
+            position:static;
+            flex: 0 0 auto;
+            width: 200px; /* Adjust size as needed */
+            margin-right: 10px;
+            padding: 10px;
+            border-radius: 20px;
+            filter:grayscale(100%);
+            transition: 0.3s;
+        }
+        .images-container::-webkit-scrollbar {
+            flex:none;
+        }
+        .image:hover {
+            filter: grayscale(0);
+            cursor:pointer;
+            transform: scale(1.2);
+        }
+        .h2 {
+            font-family: "Roboto", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+        }
+        .h3 {
+            text-align: center;
+            padding-top: 30px;
+            padding-bottom: 30px;
+            font-family: "Roboto", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+        }
+        .legends-container {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+            padding: 20px;
+        }
+        .legend {
+            width: 30%; /* Adjust size as needed */
+            border: 1px solid #ddd;
+            padding: 5px;
+            border-radius: 5px;
+        }
+        .legend img {
+            width:75px;
+            height:75px;
+            border-radius:50%;
+            overflow:hidden;
+            object-fit:cover;
+        }
+        .para {
+            padding:20px;
+            text-align: justify;
+            line-height: 2;
+            font-family: "Tilt Neon", sans-serif;
+            font-optical-sizing: auto;
+            font-weight: 400;
+            font-style: normal;
+            font-variation-settings:
+            "XROT" 0,
+            "YROT" 0;
+        }
+        .IPL-C {
+            
+            padding-top: 60px;
+            display:flex;
+            flex-direction: column;
+            justify-content: space-around;
+            align-items:center;
+        }
+        .IPL {
+            align-items: center;
+            text-align: center;
+            display:inline;
+            justify-content: center;
+            padding: 20px;
+            border-radius: 5px;
+            
+        }
+        .pic {
+            border-radius: 30px; 
+            width: 500px;
+            height: 250px;
+            display:flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            
+        }
+        .p2 {
+            text-align:center;
+            font-size: 20px;
+            color:red;
+            font-family: "Tilt Neon", sans-serif;
+            font-optical-sizing: auto;
+            font-weight: 400;
+            font-style: normal;
+            font-variation-settings:
+              "XROT" 0,
+              "YROT" 0;
+        }
+        .p4 {
+            text-align:justify;
+            padding-left: 40px;
+            font-family: "Tilt Neon", sans-serif;
+             font-optical-sizing: auto;
+             font-weight: 400;
+             font-style: normal;
+            font-variation-settings:
+          "XROT" 0,
+         "YROT" 0;
+        }
+        .h5 {
+            text-align: center;
+            font-size: 20px;
+            color: yellowgreen;
+            font-family: "Roboto", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+        }
+        .p3 {
+            padding:20px;
+            text-align: justify;
+            line-height: 2;
+            font-family: "Tilt Neon", sans-serif;
+           font-optical-sizing: auto;
+          font-weight: 400;
+          font-style: normal;
+          font-variation-settings:
+    "XROT" 0,
+    "YROT" 0;
+            
+        }
+        footer {
+            background-color: white;
+            color: black;
+            padding: 10px;
+            text-align: center;
+            bottom: 0;
+            width: 100%;
+            
+        }
+        footer a {
+            text-decoration: none;
+        }
+        @media screen and (min-width: 768px) {
+            .navbar a {
+                font-size:30px;
+            }
+            .main {
+                position:relative;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+                <a href="http://127.0.0.1:5500/CricketPrediction.html#">Home</a>
+                <a href="#about">About</a>
+                <a href="#Predictions">Predictions</a>
+                <a href="#contactus">ContactUs</a>
+        </nav>
+    </header>
+    <main>
+        <div class="h1-image">
+            <h1 class="heading">CricketPrediction</h1>
+            <p class="p1">Predict the outcomes of the matches and earn points to climb the leaderboard. Compete with other players and showcase your predictive skills!</p>
+             <div class="images-container">
+                <img src="https://predictiveplay.in/static/media/hero16.7b4fdb4fd9794f932cdf.jpg" alt="Image 1" class="image">
+                <img src="https://predictiveplay.in/static/media/hero10.4dac0cc39641589106d1.jpg" alt="Image 2" class="image">
+                <img src="https://predictiveplay.in/static/media/e.ef5f2067cc71cbcafece.jpg" alt="Image 1" class="image">
+                <img src="https://predictiveplay.in/static/media/hero17.13be827688baed1f48d1.jpg" alt="Image 2" class="image">
+                <img src="https://predictiveplay.in/static/media/hero12.31624741a568755bf2d4.jpg" alt="Image 1" class="image">
+                <img src="https://predictiveplay.in/static/media/hero13.58ae69351cd3673ed805.webp" alt="Image 2" class="image">
+                <img src="https://predictiveplay.in/static/media/hero15.2820c3ad55c2eb108e61.webp" alt="Image 1" class="image">
+                <img src="https://predictiveplay.in/static/media/hero14.75423fd3f9f865739ce2.webp" alt="Image 2" class="image">
+                <img src="https://predictiveplay.in/static/media/hero11.92781cb371d455f3857d.webp" alt="Image 2" class="image">              
+            </div>
+        </div>
+        <h3 class="h3" id="about">Here's what a few of the legends have to say about the IPL.</h3>
+        <div class="legends-container">
+            <div class="legend"> 
+                <p class="p1">"IPL has changed the landscape of Indian cricket. It has taken cricket to a whole new level, both on and off the field."</p>
+                <img src="https://predictiveplay.in/static/media/sachin.ff827de8b45ce163ec58.jpg" alt="img">
+                <h2 class="h2">Sachin Tendulkar</h2>
+            </div>
+            <div class="legend">
+                <p class="p1">"IPL has provided a platform for young talents to showcase their skills and has brought innovation to the game."</p>
+                <img src="https://res.cloudinary.com/dqpfygr5y/image/upload/v1712829222/licensed-image_ibh4bb.jpg" alt="img">
+                <h2 class="h2">Rahul dravid</h2>
+            </div>
+            <div class="legend">
+                <p class="p1">IPL has pushed the boundaries of what is possible in cricket. It has raised the bar for athleticism, skill, and strategy."</p>
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRFpsHk_t2Xkit1v7vEHsY2Dj2G2gCrKp9Wbw&usqp=CAU" alt="img">
+                <h2 class="h2">AB Devillers</h2>
+            </div>
+        </div>
+        <p class="para">As the cricket season heats up, anticipation mounts for the highly awaited clash between longstanding rivals, Team A and Team B. With both teams boasting exceptional talent and a history of intense competition, fans eagerly await the showdown set to unfold at the iconic stadium. Team A, led by the seasoned captain, is riding high on a series of impressive victories. Bolstered by the stellar performance of their star batsmen and a formidable bowling lineup, they enter the match with confidence and determination to maintain their winning streak. On the other hand, Team B, renowned for their resilience and strategic gameplay, poses a formidable challenge. With a strong batting order capable of turning the tide of the game and a disciplined bowling attack, they are poised to give their rivals a run for their money. The pitch conditions are expected to favor fast bowlers early on, offering an opportunity for both teams to capitalize on early breakthroughs. However, as the match progresses, spinners may come into play, adding another layer of complexity to the game. While both teams have their strengths and weaknesses, cricket enthusiasts are in for a nail-biting encounter filled with thrilling moments and unexpected twists. With the fate of the match hanging in the balance, fans brace themselves for a riveting spectacle that promises to leave a lasting impression. As the countdown to the match begins, speculation runs rife among pundits and fans alike, each offering their predictions on the likely outcome. Yet, in the unpredictable realm of cricket, only time will tell which team will emerge victorious and etch their name in the annals of cricketing history.</p>
+        <div>
+            <p class="p2"><b>About</b></p>
+            <h5 class="h5" id="Predictions"><b>CricketPrediction</b></h5>
+            <p class="p3">Welcome to our prediction website, where the excitement of sports meets the thrill of forecasting outcomes! Whether you're a seasoned predictor or just starting out, our platform offers an immersive experience that's both engaging and rewarding. Before you dive into the action, here's a quick overview of how it all works:</p>
+        </div>
+            <h6 class="h5"><b>HowToPredictTheCricketMatches!</b></h6>
+            <p class="p3">Predicting cricket matches involves a blend of statistical analysis, team performance evaluation, understanding of player form, and situational awareness. Factors such as pitch conditions, weather, player injuries, and head-to-head records also play crucial roles. Analysts often employ advanced statistical models like Elo ratings or machine learning algorithms to forecast outcomes. However, cricket being a dynamic sport, unforeseen events can sway the results. So, while predictions offer insights, they're not foolproof. It's essential to consider multiple variables and maintain flexibility in analysis to improve accuracy.</p>
+            <h6 class="h5">Some Big Things Happened In This IPL2024</h6>
+            <div class="IPL-C">
+            <div class="IPL">
+                <img class="pic" src="https://th.bing.com/th/id/OIP.I4Opr59w-dYcoYKn8D71ngAAAA?rs=1&pid=ImgDetMain" alt="">
+                <p class="p4"><b>Devon conway is likely to return to the Csk.</b></p>
+            </div>
+        
+            <div class="IPL">
+                <img class="pic" src="https://predictiveplay.in/static/media/klass.48bd3731308a5862f335.webp" alt="">
+                <p class="p4"><b>Sunrisers break record for highest ever IPL total.</b></p>
+            </div>
+            <div class="IPL">
+                <img class="pic" src="https://predictiveplay.in/static/media/vk1.15ffb48293a548799fc7.webp" alt="">
+                <p class="p4"><b>Kohli scores record eighth IPL hundred, but ends up on the losing side.</b></p>
+            </div>
+            <div class="IPL">
+                <img class="pic" src="https://predictiveplay.in/static/media/shep1.5556028af4348ac75b66.webp" alt="">
+                <p class="p4"><b>Romario Shepherd blasts 4, 6, 6, 6, 4, 6 off Anrich Nortje in the 20th over.</b></p>
+            </div>
+            <div class="IPL">
+                <img class="pic" src="https://predictiveplay.in/static/media/mayank1.5eb131074d46e8eecd59.webp" alt="">
+                <p class="p4"><b>Mayank Yadav bowled a 156.7 kph delivery at the Chinnaswamy Stadium</b></p>
+            </div>
+        </div>
+    </main>
+    <footer id="contactus">
+        <a href="https://www.cricbuzz.com/cricket-series/7607/indian-premier-league-2024/matches">FIXTURES</a><br><br>
+        <a href="https://www.cricbuzz.com/cricket-series/7607/indian-premier-league-2024/points-table">PointsTable</a><br><br>
+        <a href="https://www.cricbuzz.com/cricket-series/7607/indian-premier-league-2024/squads">Teams</a><br><br>
+        <a href="https://www.cricbuzz.com/cricket-series/7607/indian-premier-league-2024/stats">Stats@IPL2024</a><br><br>
+        <a></a>Privacy Policy</a> | <a>Terms of Service</a>
+        <p><b>@2024CricketPrediction.Designed by kalyankumarrajuthotakura</b></p>
+    </footer>
+</body>
+</html>
